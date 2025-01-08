@@ -1,0 +1,39 @@
+#set working directory 
+setwd("//apporto.com/dfs/SNHU/Users/sagefedorjacz_snhu/Desktop/DAT-610")
+
+#install tidyverse & pander packages
+install.packages("tidyverse", "pander")
+
+#import iihs dataset into R 
+iihs_data <-read.csv("//apporto.com/dfs/SNHU/Users/sagefedorjacz _snhu/Desktop/DAT-610")
+
+#view the data set 
+View(iihs_data)
+
+#complete principal components analysis 
+model <- princomp(~.,iihs_data[1:75,3:8],a.action=na.omit)
+
+#summarize the model 
+summary(model)
+
+#create scree plot with the model
+screeplot(model) 
+
+#add a buy column to the data set reflecting buying signal (1 = true, 0 = false) 
+iihs_data_tr <-transform(iihs_data, Buy = as.numeric(iihs_data$Average.Loss < 100))
+
+#view iihs_data_tr 
+view(iihs_data_tr)
+
+#create a linear regression model using the im function 
+im_model=lm(iihs_data_tr$Buy ~ iihs_data_tr$Collision. + iihs_data_tr$Property.damage. + iihs_data_tr$Comprehensive. + iihs_data_tr$Comprehensive. + iihs_data_tr$Personal.injury. + iihs_data_tr$Medical.payment. + iihs_data_tr$Bodily.injury.)
+
+#create a summaryt of the im model 
+sumamry(im_model)
+
+#create a logistic regression 
+lg_model=glm(iihs_data_tr$Buy ~ iihs_data_tr$Collision. + iihs_data_tr$Property.damage. + iihs_data_tr$Comprehensive. + iihs_data_tr$Personal.injury. + iihs_data_tr$medical.payment. + iihs_data_tr$Bodily.injury.,family = "quasibinomial", na.action=na.omit,control = list(maxit = 50))
+
+#create a summary (lg_model) 
+
+
