@@ -1,0 +1,113 @@
+#install readr package 
+install.packages("readr")
+
+#upload Great Britain Data set into R for analysis 
+GBR_data <- read_csv("~/workspace/SNHU/DAT-500/finalproject/Analysis/GBR_data.csv")
+
+#view Great Britain Data set 
+view(GBR_data) 
+
+#upload United States data into R studio 
+USA_data <- read_csv("~/workspace/SNHU/DAT-500/finalproject/Analysis/USA_data.csv") 
+
+#view United States dataset 
+view(USA_data)
+
+#create a summmary of GBR_data 
+summary(GBR_data)
+
+#create a summary of USA_data 
+summary(USA_data) 
+
+#create variables for mean, min, and max for USA Temp
+USA_temp_mean <- 7.55
+USA_temp_min <- 6.82
+USA_temp_max <- 21.44
+
+#create variables for mean, min, and max for USA rainfall 
+USA_rainfall_mean <- 56.11 
+USA_rainfall_min <- 27.40 
+USA_rainfall_max <-85.12
+
+#create variables for mean, min, and max for GBR temp 
+GBR_temp_mean <- 9.16 
+GBR_temp_min <- 0.18
+GBR_temp_max <- 17.39 
+
+#create variables for mean, min, and max for GBR rainfall 
+GBR_rainfall_mean <- 104.00
+GBR_rainfall_min <- 19.42 
+GBR_rainfall_max <- 233.08
+
+#create a vector for USA Temp data using the mean, min, and max 
+USA_tempV <-c(7.55, 6.82, 21.44)
+
+#print USA Temp  
+USA_tempV
+
+#create a vector for USA rainfall data using the mean, min, and max
+USA_rainfallV <-c(56.11, 27.40, 85.12) 
+
+#print USA rainfall data vector 
+USA_rainfallV
+
+#create a vector for GBR temp using the mean, min and max 
+GBR_tempV <- c(9.16, 0.18, 17.39) 
+
+#print the vector GBR_tempV 
+GBR_tempV
+
+#create a vector for GBR rainfall using the mean, min, and max 
+GBR_rainfallV <-c(104.00, 19.42, 233.08) 
+
+#print the vector GBR_rainfallV
+GBR_rainfallV
+
+#create a matrix combining GBR temp + rainfall mean, min, and max. Fill the matrix by rows
+GBR_dataM=matrix(c(9.16, 104.00, 0.189, 19.42, 17.39, 233.08), nrow = 3, ncol= 2, byrow = TRUE)
+
+#create row names for the matrix 
+rownames(GBR_dataM) <- c('mean', 'min', 'max')
+
+ #create column name for the matrix 
+colnames (GBR_dataM) <- c('GBR_temp','GBR_rainfall') 
+
+#print the matrix 
+GBR_dataM
+
+#create a matrix combining USA temp + rainfall mean, min, and max. Fill the matrix by rows 
+USA_dataM=matrix(c(7.55,56.11,6.82,27.40,21.44,85.12), nrow = 3, ncol = 2, byrow = TRUE)
+
+#create labels for the matrix rows 
+rownames(USA_dataM)<-c('mean','min','max') 
+
+#create column name for the matrix 
+colnames(USA_dataM)<-c('USA_temp','USA_rainfall')
+
+#Print the matrix 
+USA_dataM 
+
+#create a matrix to compare USA and GBR data 
+GBR_USA_data_comparison=matrix(c(9.16,7.55,104.00,56.11,0.18,6.82,19.42,27.40,17.39,21.44,233.08,85.12), nrow = 3, ncol = 4, byrow = TRUE) 
+
+#create labels for matrix rows 
+rownames(GBR_USA_data_comparison)<- c('mean','min','max') 
+
+#create labels for matrix column names 
+colnames(GBR_USA_data_comparison) <- c('GBR_temp','USA_temp','GBR_rainfall','USA_rainfall')
+
+#print the matrix 
+GBR_USA_data_comparison 
+
+#create a dataframe from GBR temp and rainfall data and USA temp and rainfall data 
+df=data.frame(GBR_dataM,USA_dataM,GBR_dataM-USA_dataM) 
+
+#print the dataframe 
+df 
+
+#create column names 
+colnames(df) <-c('GBR_temp','GBR_rainfall','USA_temp','USA_rainfall','GBR_temp-USA_temp','GBR_rainfall-USA_rainfall') 
+
+#print the dataframe 
+df
+
